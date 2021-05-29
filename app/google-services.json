@@ -1,0 +1,98 @@
+{
+  "project_info": {
+    "project_number": "16304929330",
+    "firebase_url": "https://catjam-350b4-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "catjam-350b4",
+    "storage_bucket": "catjam-350b4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:16304929330:android:03fd0011ae326292c1da2b",
+        "android_client_info": {
+          "package_name": "com.example.catjam"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "16304929330-vn3ugvtqaccbt06a86s10k9ot5o9omir.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCEO2iN9AdsLhqdFCZ1mtofkWIwC5--iso"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "16304929330-vn3ugvtqaccbt06a86s10k9ot5o9omir.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:16304929330:android:074b26216c1d55d0c1da2b",
+        "android_client_info": {
+          "package_name": "com.example.catjam2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "16304929330-vn3ugvtqaccbt06a86s10k9ot5o9omir.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCEO2iN9AdsLhqdFCZ1mtofkWIwC5--iso"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "16304929330-vn3ugvtqaccbt06a86s10k9ot5o9omir.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:16304929330:android:8705b5f058ed8a3cc1da2b",
+        "android_client_info": {
+          "package_name": "com.example.testingfirebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "16304929330-vn3ugvtqaccbt06a86s10k9ot5o9omir.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCEO2iN9AdsLhqdFCZ1mtofkWIwC5--iso"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "16304929330-vn3ugvtqaccbt06a86s10k9ot5o9omir.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
