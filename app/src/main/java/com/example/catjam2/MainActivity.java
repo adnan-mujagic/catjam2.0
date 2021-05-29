@@ -18,6 +18,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
     private BottomNavigationView bottomNavigationView;
     private ViewPager viewPager;
+    public static String username="USER";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigationView.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener);
         viewPager = findViewById(R.id.fragment_container);
         setUpAdapter(viewPager);
-        String usernameOfUser = getIntent().getExtras().getString(LoginActivity.USERNAME);
+        username=getIntent().getExtras().getString(LoginActivity.USERNAME);
 
 
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {

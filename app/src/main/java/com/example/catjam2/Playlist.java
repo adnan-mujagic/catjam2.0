@@ -1,6 +1,9 @@
 package com.example.catjam2;
 
+import com.google.firebase.database.PropertyName;
+
 public class Playlist {
+
     private int imageResId;
     private String title;
     private String description;

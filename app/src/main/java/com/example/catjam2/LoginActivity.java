@@ -25,6 +25,9 @@ public class LoginActivity extends AppCompatActivity {
     EditText usernameField;
     EditText passwordField;
     public static final String USERNAME = "username";
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference ref = database.getReference("users");
+    ValueEventListener listener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,10 +41,8 @@ public class LoginActivity extends AppCompatActivity {
     public void login(View view) {
         String inputUsername = usernameField.getText().toString();
         String inputPassword = passwordField.getText().toString();
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference ref = database.getReference("users");
 
-        ref.addValueEventListener(new ValueEventListener() {
+        listener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 User user = snapshot.child(inputUsername).getValue(User.class);
@@ -53,6 +54,7 @@ public class LoginActivity extends AppCompatActivity {
                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                         intent.putExtra(USERNAME, user.getUsername());
                         startActivity(intent);
+                        finish();
                         Toast.makeText(LoginActivity.this, "Log in successful!", Toast.LENGTH_SHORT).show();
                     }
                     else{
@@ -62,18 +64,27 @@ public class LoginActivity extends AppCompatActivity {
 
 
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 // calling on cancelled method when we receive
                 // any error or we are not able to get the data.
                 Toast.makeText(LoginActivity.this, "Something went wrong!", Toast.LENGTH_SHORT).show();
             }
-        });
+        };
+
+        ref.addValueEventListener(listener);
+
+
     }
 
     public void register(View view) {
         Intent launchRegisterActivity = new Intent(this, RegisterActivity.class);
         startActivity(launchRegisterActivity);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ref.removeEventListener(listener);
     }
 }

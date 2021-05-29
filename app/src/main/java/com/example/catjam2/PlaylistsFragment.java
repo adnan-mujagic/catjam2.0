@@ -2,15 +2,25 @@ package com.example.catjam2;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.ContactsContract;
+import android.renderscript.Sampler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,8 +28,6 @@ import java.util.List;
 
 public class PlaylistsFragment extends Fragment {
     private ListView listView;
-    String[] months;
-    List<Playlist> playlists;
     public static final String EXTRA_IMAGE = "EXTRA_IMAGE";
     public static final String EXTRA_TITLE = "EXTRA_TITLE";
     public static final String EXTRA_DESCRIPTION = "EXTRA_DESCRIPTION";
@@ -31,8 +39,31 @@ public class PlaylistsFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_playlists, container, false);
         ListView listView = (ListView) view.findViewById(R.id.list_view_container);
 
-        PlaylistsListViewAdapter playlistsListViewAdapter = new PlaylistsListViewAdapter(getPlaylists(), getActivity());
+        List<Playlist> playlists = new ArrayList<>();
+        PlaylistsListViewAdapter playlistsListViewAdapter = new PlaylistsListViewAdapter(playlists, getActivity());
         listView.setAdapter(playlistsListViewAdapter);
+
+        FirebaseDatabase db = FirebaseDatabase.getInstance();
+        DatabaseReference ref = db.getReference("users");
+
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                playlists.clear();
+                for(DataSnapshot ds: snapshot.child(MainActivity.username).child("playlists").getChildren()){
+
+                    Playlist p = ds.getValue(Playlist.class);
+                    p.setImageResId(R.drawable.ic_baseline_queue_music_24);
+                    playlists.add(p);
+                }
+                playlistsListViewAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(getContext(), error.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -52,11 +83,14 @@ public class PlaylistsFragment extends Fragment {
 */
         return view;
     }
-    private List<Playlist> getPlaylists(){
-        List<Playlist> playlistsList = new ArrayList<>();
-        playlistsList.add(new Playlist(R.drawable.playlist1, "Playlist1", "Jazz"));
-        playlistsList.add(new Playlist(R.drawable.playlist1, "Playlist2", "Chill"));
-        playlistsList.add(new Playlist(R.drawable.playlist3, "Playlist3", "Top50"));
-        return playlistsList;
+
+
+
+    private List<Playlist> getHCP(){
+        List<Playlist> playlists = new ArrayList<>();
+        playlists.add(new Playlist(R.drawable.playlist1, "XD","the most xd playlist ever"));
+        return playlists;
     }
+
+
 }
