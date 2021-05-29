@@ -10,6 +10,10 @@ import android.util.Log;
 import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private BottomNavigationView bottomNavigationView;
@@ -23,6 +27,9 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigationView.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener);
         viewPager = findViewById(R.id.fragment_container);
         setUpAdapter(viewPager);
+        String usernameOfUser = getIntent().getExtras().getString(LoginActivity.USERNAME);
+
+
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -67,5 +74,11 @@ public class MainActivity extends AppCompatActivity {
         viewPageAdapter.addFragment(new PlaylistsFragment());
         viewPageAdapter.addFragment(new DiscoverFragment());
         viewPager.setAdapter(viewPageAdapter);
+    }
+
+    private List<Playlist> getPlaylists(){
+        List<Playlist> playlistsList = new ArrayList<>();
+        playlistsList.add(new Playlist(R.drawable.playlist1, "Playlist1", "Jazz"));
+        return playlistsList;
     }
 }
