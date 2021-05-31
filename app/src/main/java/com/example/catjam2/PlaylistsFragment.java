@@ -31,6 +31,7 @@ public class PlaylistsFragment extends Fragment {
     public static final String EXTRA_IMAGE = "EXTRA_IMAGE";
     public static final String EXTRA_TITLE = "EXTRA_TITLE";
     public static final String EXTRA_DESCRIPTION = "EXTRA_DESCRIPTION";
+    public static final String SONG_KEY ="SONG_KEY";
 
 
     @Nullable
@@ -73,6 +74,7 @@ public class PlaylistsFragment extends Fragment {
                 intent.putExtra(EXTRA_IMAGE, playlists.getImageResId());
                 intent.putExtra(EXTRA_TITLE, playlists.getTitle());
                 intent.putExtra(EXTRA_DESCRIPTION, playlists.getDescription());
+
                 // TODO: 27. 5. 2021. put song array into intent here
                 startActivity(intent);
 
