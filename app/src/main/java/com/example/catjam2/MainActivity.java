@@ -5,9 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.FirebaseDatabase;
@@ -81,5 +83,10 @@ public class MainActivity extends AppCompatActivity {
         List<Playlist> playlistsList = new ArrayList<>();
         playlistsList.add(new Playlist(R.drawable.playlist1, "Playlist1", "Jazz"));
         return playlistsList;
+    }
+
+    public void addSong(View view){
+        Intent intent = new Intent(this,AddSongsToRoom.class);
+        startActivity(intent);
     }
 }
