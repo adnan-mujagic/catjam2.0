@@ -38,7 +38,7 @@ public class HomeFragment extends Fragment {
         recommendationsList = view.findViewById(R.id.recommendations_list);
 
         List<Song> songs = new ArrayList<>();
-        SongListViewAdapter songsAdapter = new SongListViewAdapter(getContext(),songs);
+        RecommendationListViewAdapter songsAdapter = new RecommendationListViewAdapter(songs,getContext());
         recommendationsList.setAdapter(songsAdapter);
 
         FirebaseDatabase db = FirebaseDatabase.getInstance();
@@ -63,4 +63,5 @@ public class HomeFragment extends Fragment {
             }
         });
     }
+
 }
