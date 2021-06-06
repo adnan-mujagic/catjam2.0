@@ -11,17 +11,28 @@ public class Song {
     private String name;
     private String artist;
     private int cover;
+    private String songUrl;
 
     public Song(int id, String name, String artist){
         this.name=name;
         this.id=id;
         this.artist=artist;
     }
+
     @Ignore
-    public Song(String name, String artist, int cover) {
+    public Song(int id, String name, String artist, String songUrl){
+        this.name=name;
+        this.id=id;
+        this.artist=artist;
+        this.songUrl = songUrl;
+    }
+
+    @Ignore
+    public Song(String name, String artist, int cover, String songUrl) {
         this.name = name;
         this.artist = artist;
         this.cover = cover;
+        this.songUrl = songUrl;
     }
     @Ignore
     public Song(String name, String artist){
@@ -66,5 +77,11 @@ public class Song {
         this.cover = cover;
     }
 
+    public String getSongUrl() {
+        return songUrl;
+    }
 
+    public void setSongUrl(String songUrl) {
+        this.songUrl = songUrl;
+    }
 }
