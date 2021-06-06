@@ -4,18 +4,28 @@ import com.google.firebase.database.PropertyName;
 
 public class Playlist {
 
+    private String playlistId;
     private int imageResId;
     private String title;
     private String description;
 
-    public Playlist(int imageResId, String title, String description) {
+    public Playlist(int imageResId, String title, String description, String playlistId) {
         this.imageResId = imageResId;
         this.title = title;
         this.description = description;
+        this.playlistId = playlistId;
     }
 
     public Playlist() {
 
+    }
+
+    public String getPlaylistId() {
+        return playlistId;
+    }
+
+    public void setPlaylistId(String playlistId) {
+        this.playlistId = playlistId;
     }
 
     public int getImageResId() {

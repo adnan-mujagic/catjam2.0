@@ -3,7 +3,10 @@ package com.example.catjam2;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -19,9 +22,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PlaylistDetails extends AppCompatActivity {
+
+    public static final String EXTRA_COVER = "EXTRA_COVER";
+    public static final String EXTRA_SONG_NAME = "EXTRA_SONG_NAME";
+    public static final String EXTRA_ARTIST_NAME = "EXTRA_ARTIST_NAME";
+    public static final String EXTRA_SONG_URL = "EXTRA_SONG_URL";
+
     ImageView image;
     TextView title, description;
-    ListView songsView;
+    ListView songsListView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,10 +38,11 @@ public class PlaylistDetails extends AppCompatActivity {
         image = findViewById(R.id.playlist_details_image);
         title = findViewById(R.id.playlist_details_title);
         description = findViewById(R.id.playlist_details_description);
-        songsView = findViewById(R.id.song_list_view);
+        songsListView = findViewById(R.id.song_list_view);
+
         List<Song> songs = new ArrayList<>();
         SongListViewAdapter songAdapter = new SongListViewAdapter(getApplicationContext(),songs);
-        songsView.setAdapter(songAdapter);
+        songsListView.setAdapter(songAdapter);
 
         Bundle extras = getIntent().getExtras();
         if(extras!=null){
@@ -40,7 +50,27 @@ public class PlaylistDetails extends AppCompatActivity {
             title.setText(extras.getString(PlaylistsFragment.EXTRA_TITLE));
             image.setImageResource(extras.getInt(PlaylistsFragment.EXTRA_IMAGE));
             description.setText(extras.getString(PlaylistsFragment.EXTRA_DESCRIPTION));
+
+            songsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    Song song = (Song) parent.getItemAtPosition(position);
+                    Intent intent = new Intent(getBaseContext(), SongDetails.class);
+
+
+                    intent.putExtra(EXTRA_COVER, song.getCover());
+                    intent.putExtra(EXTRA_SONG_NAME, song.getName());
+                    intent.putExtra(EXTRA_ARTIST_NAME, song.getArtist());
+                    // TODO: 6. 6. 2021. send URL extra with this intent
+                    intent.putExtra(EXTRA_SONG_URL, song.getSongUrl());
+
+                    // TODO: 27. 5. 2021. put song array into intent here
+                    startActivity(intent);
+                }
+            });
         }
+
+
 
 
         FirebaseDatabase db = FirebaseDatabase.getInstance();
@@ -50,11 +80,19 @@ public class PlaylistDetails extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 songs.clear();
-                for(DataSnapshot songSnap : snapshot.child(MainActivity.username).child("playlists").child("p1").child("songs").getChildren()){
+
+                for(DataSnapshot songSnap: snapshot.child(MainActivity.username).child("playlists").child(extras.getString(PlaylistsFragment.EXTRA_PLAYLIST_ID)).child("songs").getChildren()){
                     Song s = songSnap.getValue(Song.class);
                     s.setCover(R.drawable.ic_baseline_music_note_24);
                     songs.add(s);
                 }
+
+      /*
+                for(DataSnapshot songSnap : snapshot.child(MainActivity.username).child("playlists").child("p1").child("songs").getChildren()){
+                    Song s = songSnap.getValue(Song.class);
+                    s.setCover(R.drawable.ic_baseline_music_note_24);
+                    songs.add(s);
+                }*/
                 songAdapter.notifyDataSetChanged();
             }
 
@@ -69,6 +107,7 @@ public class PlaylistDetails extends AppCompatActivity {
 
     }
 
+    /*
     public List<Song> getSongs(){
         List<Song> songs = new ArrayList<>();
         songs.add(new Song("NAME","ARTIST",R.drawable.ic_baseline_music_note_24));
@@ -76,5 +115,5 @@ public class PlaylistDetails extends AppCompatActivity {
         songs.add(new Song("NAME","ARTIST",R.drawable.ic_baseline_music_note_24));
         return songs;
 
-    }
+    }*/
 }

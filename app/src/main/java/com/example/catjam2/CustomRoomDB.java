@@ -5,7 +5,7 @@ import android.content.Context;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
-@Database(entities = {Song.class},version = 1)
+@Database(entities = {Song.class},version = 2)
 public abstract class CustomRoomDB extends RoomDatabase {
     private static CustomRoomDB INSTANCE;
     public abstract SongsDao songsDao();

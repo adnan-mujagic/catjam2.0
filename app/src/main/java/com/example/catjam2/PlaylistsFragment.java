@@ -31,7 +31,8 @@ public class PlaylistsFragment extends Fragment {
     public static final String EXTRA_IMAGE = "EXTRA_IMAGE";
     public static final String EXTRA_TITLE = "EXTRA_TITLE";
     public static final String EXTRA_DESCRIPTION = "EXTRA_DESCRIPTION";
-    public static final String SONG_KEY ="SONG_KEY";
+    public static final String EXTRA_PLAYLIST_ID = "EXTRA_PLAYLIST_ID";
+    //public static final String SONG_KEY ="SONG_KEY";
 
 
     @Nullable
@@ -55,6 +56,7 @@ public class PlaylistsFragment extends Fragment {
 
                     Playlist p = ds.getValue(Playlist.class);
                     p.setImageResId(R.drawable.ic_baseline_queue_music_24);
+                    p.setPlaylistId(ds.getKey());
                     playlists.add(p);
                 }
                 playlistsListViewAdapter.notifyDataSetChanged();
@@ -71,7 +73,9 @@ public class PlaylistsFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Playlist playlists = (Playlist) parent.getItemAtPosition(position);
                 Intent intent = new Intent(getActivity(), PlaylistDetails.class);
+
                 intent.putExtra(EXTRA_IMAGE, playlists.getImageResId());
+                intent.putExtra(EXTRA_PLAYLIST_ID, playlists.getPlaylistId());
                 intent.putExtra(EXTRA_TITLE, playlists.getTitle());
                 intent.putExtra(EXTRA_DESCRIPTION, playlists.getDescription());
 
@@ -87,12 +91,12 @@ public class PlaylistsFragment extends Fragment {
     }
 
 
-
+/*
     private List<Playlist> getHCP(){
         List<Playlist> playlists = new ArrayList<>();
         playlists.add(new Playlist(R.drawable.playlist1, "XD","the most xd playlist ever"));
         return playlists;
     }
-
+*/
 
 }
