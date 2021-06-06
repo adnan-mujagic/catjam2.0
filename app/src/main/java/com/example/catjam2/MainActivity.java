@@ -78,6 +78,11 @@ public class MainActivity extends AppCompatActivity {
         viewPageAdapter.addFragment(new DiscoverFragment());
         viewPager.setAdapter(viewPageAdapter);
     }
+
+    public void createPlaylist(View view){
+        Intent intent = new Intent(getBaseContext(),CreatePlaylist.class);
+        startActivity(intent);
+    }
 /*
     private List<Playlist> getPlaylists(){
         List<Playlist> playlistsList = new ArrayList<>();
