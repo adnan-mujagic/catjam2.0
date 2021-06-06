@@ -84,9 +84,9 @@ public class MainActivity extends AppCompatActivity {
         playlistsList.add(new Playlist(R.drawable.playlist1, "Playlist1", "Jazz"));
         return playlistsList;
     }*/
-
+    /*
     public void addSong(View view){
         Intent intent = new Intent(this,AddSongsToRoom.class);
         startActivity(intent);
-    }
+    }*/
 }

@@ -1,4 +1,4 @@
-package com.example.catjam2;
+/*package com.example.catjam2;
 
 import android.content.Context;
 
@@ -16,4 +16,4 @@ public abstract class CustomRoomDB extends RoomDatabase {
         }
         return INSTANCE;
     }
-}
+}*/

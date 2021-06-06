@@ -1,12 +1,12 @@
 package com.example.catjam2;
-
+/*
 import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
-
-@Entity(tableName = "songs")
+*/
+//@Entity(tableName = "songs")
 public class Song {
-    @PrimaryKey(autoGenerate = true)
+    //@PrimaryKey(autoGenerate = true)
     private int id;
     private String name;
     private String artist;
@@ -19,7 +19,7 @@ public class Song {
         this.artist=artist;
     }
 
-    @Ignore
+    //@Ignore
     public Song(int id, String name, String artist, String songUrl){
         this.name=name;
         this.id=id;
@@ -27,20 +27,20 @@ public class Song {
         this.songUrl = songUrl;
     }
 
-    @Ignore
+   // @Ignore
     public Song(String name, String artist, int cover, String songUrl) {
         this.name = name;
         this.artist = artist;
         this.cover = cover;
         this.songUrl = songUrl;
     }
-    @Ignore
+    //@Ignore
     public Song(String name, String artist){
         this.name=name;
         this.artist=artist;
     }
 
-    @Ignore
+   // @Ignore
     public Song() {
 
     }
