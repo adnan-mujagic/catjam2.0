@@ -89,8 +89,6 @@ public class SongDetails extends AppCompatActivity {
                 }
             }
 
-
-
         } catch(IOException e){
             e.printStackTrace();
         }

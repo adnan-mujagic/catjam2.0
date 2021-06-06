@@ -12,6 +12,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -20,6 +21,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class PlaylistDetails extends AppCompatActivity {
 
@@ -31,6 +33,8 @@ public class PlaylistDetails extends AppCompatActivity {
     ImageView image;
     TextView title, description;
     ListView songsListView;
+    FloatingActionButton playRandomSongButton;
+    List<Song> songs;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,8 +43,9 @@ public class PlaylistDetails extends AppCompatActivity {
         title = findViewById(R.id.playlist_details_title);
         description = findViewById(R.id.playlist_details_description);
         songsListView = findViewById(R.id.song_list_view);
+        playRandomSongButton = findViewById(R.id.play_random_song_button);
 
-        List<Song> songs = new ArrayList<>();
+        songs = new ArrayList<>();
         SongListViewAdapter songAdapter = new SongListViewAdapter(getApplicationContext(),songs);
         songsListView.setAdapter(songAdapter);
 
@@ -101,10 +106,19 @@ public class PlaylistDetails extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_SHORT).show();
             }
         });
+    }
 
+    public void playRandomSong(View view){
+        Random rand = new Random();
+        int a = rand.nextInt(songs.size());
+        Song randSong = songs.get(a);
+        Intent intent = new Intent(getBaseContext(), SongDetails.class);
 
-
-
+        intent.putExtra(EXTRA_COVER, randSong.getCover());
+        intent.putExtra(EXTRA_SONG_NAME, randSong.getName());
+        intent.putExtra(EXTRA_ARTIST_NAME, randSong.getArtist());
+        intent.putExtra(EXTRA_SONG_URL, randSong.getSongUrl());
+        startActivity(intent);
     }
 
     /*
