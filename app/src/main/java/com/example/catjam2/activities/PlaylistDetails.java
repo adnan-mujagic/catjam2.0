@@ -114,15 +114,20 @@ public class PlaylistDetails extends AppCompatActivity {
 
     public void playRandomSong(View view){
         Random rand = new Random();
-        int a = rand.nextInt(songs.size());
-        Song randSong = songs.get(a);
-        Intent intent = new Intent(getBaseContext(), SongDetails.class);
+        if(songs.size() == 0){
+            Toast.makeText(this, "You don't have any songs on this playlist!", Toast.LENGTH_SHORT).show();
+        } else {
+            int a = rand.nextInt(songs.size());
+            Song randSong = songs.get(a);
+            Intent intent = new Intent(getBaseContext(), SongDetails.class);
 
-        intent.putExtra(EXTRA_COVER, randSong.getCover());
-        intent.putExtra(EXTRA_SONG_NAME, randSong.getName());
-        intent.putExtra(EXTRA_ARTIST_NAME, randSong.getArtist());
-        intent.putExtra(EXTRA_SONG_URL, randSong.getSongUrl());
-        startActivity(intent);
+            intent.putExtra(EXTRA_COVER, randSong.getCover());
+            intent.putExtra(EXTRA_SONG_NAME, randSong.getName());
+            intent.putExtra(EXTRA_ARTIST_NAME, randSong.getArtist());
+            intent.putExtra(EXTRA_SONG_URL, randSong.getSongUrl());
+            startActivity(intent);
+        }
+
     }
 
     /*

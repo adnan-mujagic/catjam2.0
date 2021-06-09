@@ -34,7 +34,7 @@ public class CreatePlaylist extends AppCompatActivity {
         pDesc=desc.getText().toString();
         if(view.getId()==R.id.add_playlist){
             ref.child(MainActivity.username).child("playlists").child(pName).setValue(new Playlist(pName,pDesc));
-            Intent intent = new Intent(this, PlaylistsFragment.class);
+            Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
             Toast.makeText(this, "Playlist "+pName+" successfully added!", Toast.LENGTH_SHORT).show();
         }
