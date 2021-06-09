@@ -27,6 +27,7 @@
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
         android:text="TextView"
+        android:textColor="#E91E63"
         android:textSize="18sp"
         app:layout_constraintStart_toEndOf="@+id/song_cover"
         app:layout_constraintTop_toTopOf="parent" />
@@ -39,6 +40,7 @@
         android:layout_marginLeft="8dp"
         android:layout_marginBottom="8dp"
         android:text="TextView"
+        android:textColor="#9A1542"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/song_cover" />
