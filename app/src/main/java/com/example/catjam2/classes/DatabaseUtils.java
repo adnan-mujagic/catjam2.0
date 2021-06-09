@@ -1,9 +1,10 @@
-package com.example.catjam2;
+package com.example.catjam2.classes;
 
 
 
 import androidx.annotation.NonNull;
 
+import com.example.catjam2.classes.Playlist;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;

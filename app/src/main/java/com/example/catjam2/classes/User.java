@@ -1,4 +1,4 @@
-package com.example.catjam2;
+package com.example.catjam2.classes;
 
 public class User {
 

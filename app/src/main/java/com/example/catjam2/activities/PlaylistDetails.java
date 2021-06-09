@@ -1,4 +1,4 @@
-package com.example.catjam2;
+package com.example.catjam2.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,6 +12,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.catjam2.fragments.PlaylistsFragment;
+import com.example.catjam2.R;
+import com.example.catjam2.classes.Song;
+import com.example.catjam2.adapters.SongListViewAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;

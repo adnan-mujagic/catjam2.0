@@ -1,12 +1,14 @@
-package com.example.catjam2;
+package com.example.catjam2.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.view.Window;
 import android.widget.ImageView;
+
+import com.example.catjam2.R;
+import com.example.catjam2.activities.LoginActivity;
 
 public class Splash extends AppCompatActivity {
     ImageView img;
@@ -27,7 +29,7 @@ public class Splash extends AppCompatActivity {
                     sleep(5*1000);
 
                     // After 5 seconds redirect to another intent
-                    Intent i=new Intent(getBaseContext(),LoginActivity.class);
+                    Intent i=new Intent(getBaseContext(), LoginActivity.class);
                     startActivity(i);
 
                     //Remove activity

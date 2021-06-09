@@ -1,4 +1,4 @@
-package com.example.catjam2;
+package com.example.catjam2.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,6 +8,9 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.catjam2.classes.Playlist;
+import com.example.catjam2.fragments.PlaylistsFragment;
+import com.example.catjam2.R;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -31,7 +34,7 @@ public class CreatePlaylist extends AppCompatActivity {
         pDesc=desc.getText().toString();
         if(view.getId()==R.id.add_playlist){
             ref.child(MainActivity.username).child("playlists").child(pName).setValue(new Playlist(pName,pDesc));
-            Intent intent = new Intent(this,PlaylistsFragment.class);
+            Intent intent = new Intent(this, PlaylistsFragment.class);
             startActivity(intent);
             Toast.makeText(this, "Playlist "+pName+" successfully added!", Toast.LENGTH_SHORT).show();
         }

@@ -1,4 +1,4 @@
-package com.example.catjam2;
+package com.example.catjam2.adapters;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;

@@ -1,18 +1,16 @@
-package com.example.catjam2;
+package com.example.catjam2.adapters;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.example.catjam2.R;
+import com.example.catjam2.classes.Song;
 
 import java.util.List;
-
-import static androidx.core.content.ContextCompat.startActivity;
 
 public class RecommendationListViewAdapter extends BaseAdapter {
 

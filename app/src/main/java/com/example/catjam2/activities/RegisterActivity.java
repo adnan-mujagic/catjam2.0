@@ -1,17 +1,16 @@
-package com.example.catjam2;
+package com.example.catjam2.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.catjam2.R;
+import com.example.catjam2.classes.User;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -43,7 +42,7 @@ public class RegisterActivity extends AppCompatActivity {
         if(inputPassword.equals(inputRepeatPassword)){
             User user = new User(inputUsername,inputPassword,inputEmail);
             ref.child(inputUsername).setValue(user);
-            Intent intent = new Intent(this,MainActivity.class);
+            Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
             Toast.makeText(this, "You have successfully registered!", Toast.LENGTH_SHORT).show();
         }

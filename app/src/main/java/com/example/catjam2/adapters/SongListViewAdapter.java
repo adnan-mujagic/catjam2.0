@@ -1,4 +1,4 @@
-package com.example.catjam2;
+package com.example.catjam2.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,6 +7,9 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.catjam2.R;
+import com.example.catjam2.classes.Song;
 
 import java.util.ArrayList;
 import java.util.List;

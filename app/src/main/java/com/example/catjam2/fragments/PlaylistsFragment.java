@@ -1,10 +1,7 @@
-package com.example.catjam2;
+package com.example.catjam2.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.ContactsContract;
-import android.renderscript.Sampler;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +13,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.catjam2.classes.Playlist;
+import com.example.catjam2.adapters.PlaylistsListViewAdapter;
+import com.example.catjam2.R;
+import com.example.catjam2.activities.MainActivity;
+import com.example.catjam2.activities.PlaylistDetails;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;

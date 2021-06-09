@@ -1,4 +1,4 @@
-package com.example.catjam2;
+package com.example.catjam2.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +11,8 @@ import android.widget.ListView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
+import com.example.catjam2.R;
 
 import java.util.List;
 

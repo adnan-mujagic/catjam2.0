@@ -1,4 +1,4 @@
-package com.example.catjam2;
+package com.example.catjam2.activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,11 +11,12 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.example.catjam2.fragments.DiscoverFragment;
+import com.example.catjam2.fragments.HomeFragment;
+import com.example.catjam2.fragments.PlaylistsFragment;
+import com.example.catjam2.R;
+import com.example.catjam2.adapters.ViewPageAdapter;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.firebase.database.FirebaseDatabase;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private BottomNavigationView bottomNavigationView;
@@ -81,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void createPlaylist(View view){
-        Intent intent = new Intent(getBaseContext(),CreatePlaylist.class);
+        Intent intent = new Intent(getBaseContext(), CreatePlaylist.class);
         startActivity(intent);
     }
 /*
