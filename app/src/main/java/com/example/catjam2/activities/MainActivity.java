@@ -32,7 +32,9 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigationView.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener);
         viewPager = findViewById(R.id.fragment_container);
         setUpAdapter(viewPager);
-        username=getIntent().getExtras().getString(LoginActivity.USERNAME);
+        if(getIntent().getExtras() != null){
+            username=getIntent().getExtras().getString(LoginActivity.USERNAME);
+        }
 
 
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {

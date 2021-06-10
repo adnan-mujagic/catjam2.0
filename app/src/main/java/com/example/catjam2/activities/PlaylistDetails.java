@@ -5,8 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.renderscript.Sampler;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -21,6 +23,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -36,12 +39,14 @@ public class PlaylistDetails extends AppCompatActivity {
     public static final String EXTRA_PLAYLIST_ID = "EXTRA_PLAYLIST_ID";
 
 
-
+    ValueEventListener valueEventListener;
     ImageView image;
     TextView title, description;
     ListView songsListView;
     FloatingActionButton playRandomSongButton;
+    Button deletePlaylistButton;
     List<Song> songs;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +56,7 @@ public class PlaylistDetails extends AppCompatActivity {
         description = findViewById(R.id.playlist_details_description);
         songsListView = findViewById(R.id.song_list_view);
         playRandomSongButton = findViewById(R.id.play_random_song_button);
+        deletePlaylistButton = findViewById(R.id.delete_playlist_button);
 
         songs = new ArrayList<>();
         SongListViewAdapter songAdapter = new SongListViewAdapter(getApplicationContext(),songs);
@@ -81,9 +87,6 @@ public class PlaylistDetails extends AppCompatActivity {
             });
         }
 
-
-
-
         FirebaseDatabase db = FirebaseDatabase.getInstance();
         DatabaseReference ref = db.getReference("users");
 
@@ -98,12 +101,6 @@ public class PlaylistDetails extends AppCompatActivity {
                     songs.add(s);
                 }
 
-      /*
-                for(DataSnapshot songSnap : snapshot.child(MainActivity.username).child("playlists").child("p1").child("songs").getChildren()){
-                    Song s = songSnap.getValue(Song.class);
-                    s.setCover(R.drawable.ic_baseline_music_note_24);
-                    songs.add(s);
-                }*/
                 songAdapter.notifyDataSetChanged();
             }
 
@@ -129,7 +126,18 @@ public class PlaylistDetails extends AppCompatActivity {
             intent.putExtra(EXTRA_SONG_URL, randSong.getSongUrl());
             startActivity(intent);
         }
+    }
 
+    public void deletePlaylist(View view){
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        removeFromDatabase();
+    }
+
+    public void removeFromDatabase(){
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference();
+        ref.child("users").child(MainActivity.username).child("playlists").child(getIntent().getExtras().getString(PlaylistsFragment.EXTRA_PLAYLIST_ID)).removeValue();
+        return;
     }
 
     /*
