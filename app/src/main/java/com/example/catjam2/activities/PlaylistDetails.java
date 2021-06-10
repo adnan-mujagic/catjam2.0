@@ -33,6 +33,9 @@ public class PlaylistDetails extends AppCompatActivity {
     public static final String EXTRA_SONG_NAME = "EXTRA_SONG_NAME";
     public static final String EXTRA_ARTIST_NAME = "EXTRA_ARTIST_NAME";
     public static final String EXTRA_SONG_URL = "EXTRA_SONG_URL";
+    public static final String EXTRA_PLAYLIST_ID = "EXTRA_PLAYLIST_ID";
+
+
 
     ImageView image;
     TextView title, description;
@@ -70,10 +73,9 @@ public class PlaylistDetails extends AppCompatActivity {
                     intent.putExtra(EXTRA_COVER, song.getCover());
                     intent.putExtra(EXTRA_SONG_NAME, song.getName());
                     intent.putExtra(EXTRA_ARTIST_NAME, song.getArtist());
-                    // TODO: 6. 6. 2021. send URL extra with this intent
                     intent.putExtra(EXTRA_SONG_URL, song.getSongUrl());
-
-                    // TODO: 27. 5. 2021. put song array into intent here
+                    intent.putExtra(EXTRA_PLAYLIST_ID, extras.getString(PlaylistsFragment.EXTRA_PLAYLIST_ID));
+                    intent.putExtra("from", "PlaylistDetails");
                     startActivity(intent);
                 }
             });
