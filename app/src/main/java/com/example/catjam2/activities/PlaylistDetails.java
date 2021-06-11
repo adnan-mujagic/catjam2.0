@@ -82,7 +82,6 @@ public class PlaylistDetails extends AppCompatActivity {
                     intent.putExtra(EXTRA_ARTIST_NAME, song.getArtist());
                     intent.putExtra(EXTRA_SONG_URL, song.getSongUrl());
                     intent.putExtra(EXTRA_PLAYLIST_ID, extras.getString(PlaylistsFragment.EXTRA_PLAYLIST_ID));
-                    intent.putExtra("from", "PlaylistDetails");
                     startActivity(intent);
                 }
             });
@@ -125,6 +124,8 @@ public class PlaylistDetails extends AppCompatActivity {
             intent.putExtra(EXTRA_SONG_NAME, randSong.getName());
             intent.putExtra(EXTRA_ARTIST_NAME, randSong.getArtist());
             intent.putExtra(EXTRA_SONG_URL, randSong.getSongUrl());
+            intent.putExtra(EXTRA_COVER_URL, randSong.getCoverUrl());
+            intent.putExtra(EXTRA_PLAYLIST_ID, getIntent().getExtras().getString(PlaylistsFragment.EXTRA_PLAYLIST_ID));
             startActivity(intent);
         }
     }
