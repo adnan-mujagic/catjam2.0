@@ -116,7 +116,7 @@ public class PlaylistDetails extends AppCompatActivity {
         if(songs.size() == 0){
             Toast.makeText(this, "You don't have any songs on this playlist!", Toast.LENGTH_SHORT).show();
         } else {
-            int a = rand.nextInt(songs.size());
+            int a = rand.nextInt(songs.size()-1);
             Song randSong = songs.get(a);
             Intent intent = new Intent(getBaseContext(), SongDetails.class);
 

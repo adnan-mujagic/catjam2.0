@@ -66,7 +66,7 @@ public class PlaylistsFragment extends Fragment {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(getContext(), error.toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Oops, something went wrong!", Toast.LENGTH_SHORT).show();
             }
         });
 
