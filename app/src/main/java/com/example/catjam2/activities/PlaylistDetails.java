@@ -40,7 +40,6 @@ public class PlaylistDetails extends AppCompatActivity {
     public static final String EXTRA_COVER_URL = "EXTRA_COVER_URL";
 
 
-    ValueEventListener valueEventListener;
     ImageView image;
     TextView title, description;
     ListView songsListView;
@@ -141,14 +140,4 @@ public class PlaylistDetails extends AppCompatActivity {
         ref.child("users").child(MainActivity.username).child("playlists").child(getIntent().getExtras().getString(PlaylistsFragment.EXTRA_PLAYLIST_ID)).removeValue();
         return;
     }
-
-    /*
-    public List<Song> getSongs(){
-        List<Song> songs = new ArrayList<>();
-        songs.add(new Song("NAME","ARTIST",R.drawable.ic_baseline_music_note_24));
-        songs.add(new Song("NAME","ARTIST",R.drawable.ic_baseline_music_note_24));
-        songs.add(new Song("NAME","ARTIST",R.drawable.ic_baseline_music_note_24));
-        return songs;
-
-    }*/
 }

@@ -87,15 +87,4 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(getBaseContext(), CreatePlaylist.class);
         startActivity(intent);
     }
-/*
-    private List<Playlist> getPlaylists(){
-        List<Playlist> playlistsList = new ArrayList<>();
-        playlistsList.add(new Playlist(R.drawable.playlist1, "Playlist1", "Jazz"));
-        return playlistsList;
-    }*/
-    /*
-    public void addSong(View view){
-        Intent intent = new Intent(this,AddSongsToRoom.class);
-        startActivity(intent);
-    }*/
 }

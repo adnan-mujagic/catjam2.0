@@ -86,21 +86,11 @@ public class PlaylistsFragment extends Fragment {
 
             }
         });
-/*
-        PlaylistsListViewAdapter playlistsListViewAdapter = PlaylistsListViewAdapter(playlists, )
-*/
         return view;
     }
 
 
 
 
-/*
-    private List<Playlist> getHCP(){
-        List<Playlist> playlists = new ArrayList<>();
-        playlists.add(new Playlist(R.drawable.playlist1, "XD","the most xd playlist ever"));
-        return playlists;
-    }
-*/
 
 }

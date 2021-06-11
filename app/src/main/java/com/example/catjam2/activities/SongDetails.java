@@ -242,8 +242,6 @@ public class SongDetails extends AppCompatActivity {
         if(intent.resolveActivity(getPackageManager())!=null){
             startActivity(intent);
         }
-
-
     }
 
     public void share(View view){
