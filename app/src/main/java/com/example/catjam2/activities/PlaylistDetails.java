@@ -37,6 +37,7 @@ public class PlaylistDetails extends AppCompatActivity {
     public static final String EXTRA_ARTIST_NAME = "EXTRA_ARTIST_NAME";
     public static final String EXTRA_SONG_URL = "EXTRA_SONG_URL";
     public static final String EXTRA_PLAYLIST_ID = "EXTRA_PLAYLIST_ID";
+    public static final String EXTRA_COVER_URL = "EXTRA_COVER_URL";
 
 
     ValueEventListener valueEventListener;
@@ -75,7 +76,7 @@ public class PlaylistDetails extends AppCompatActivity {
                     Song song = (Song) parent.getItemAtPosition(position);
                     Intent intent = new Intent(getBaseContext(), SongDetails.class);
 
-
+                    intent.putExtra(EXTRA_COVER_URL, song.getCoverUrl());
                     intent.putExtra(EXTRA_COVER, song.getCover());
                     intent.putExtra(EXTRA_SONG_NAME, song.getName());
                     intent.putExtra(EXTRA_ARTIST_NAME, song.getArtist());

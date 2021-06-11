@@ -8,7 +8,9 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.catjam2.R;
+import com.example.catjam2.activities.PlaylistDetails;
 import com.example.catjam2.classes.Song;
 
 import java.util.ArrayList;
@@ -16,7 +18,7 @@ import java.util.List;
 
 public class SongListViewAdapter extends BaseAdapter {
     Context context;
-    List<Song> songs = new ArrayList<>();
+    List<Song> songs;
 
     public SongListViewAdapter(Context context, List<Song> songs) {
         this.context = context;
@@ -48,7 +50,12 @@ public class SongListViewAdapter extends BaseAdapter {
         TextView name = convertView.findViewById(R.id.song_name);
         TextView artist = convertView.findViewById(R.id.song_artist);
 
-        cover.setImageResource(song.getCover());
+        if(song.getCoverUrl().isEmpty()){
+            cover.setImageResource(song.getCover());
+        } else{
+            Glide.with(context).load(song.getCoverUrl()).into(cover);
+        }
+
         name.setText(song.getName());
         artist.setText(song.getArtist());
 

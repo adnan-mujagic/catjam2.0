@@ -11,12 +11,32 @@ public class Song {
     private String name;
     private String artist;
     private int cover;
+    // optional custom cover loaded from the URL
+    private String coverUrl = "";
     private String songUrl;
 
     public Song(int id, String name, String artist){
         this.name=name;
         this.id=id;
         this.artist=artist;
+    }
+
+    // constructor for Song that has a custom cover picture
+    public Song(int id, String name, String artist, String coverUrl, String songUrl) {
+        this.id = id;
+        this.name = name;
+        this.artist = artist;
+        this.coverUrl = coverUrl;
+        this.songUrl = songUrl;
+    }
+
+    // getter and setter for cover URL
+    public String getCoverUrl() {
+        return coverUrl;
+    }
+
+    public void setCoverUrl(String coverUrl) {
+        this.coverUrl = coverUrl;
     }
 
     //@Ignore

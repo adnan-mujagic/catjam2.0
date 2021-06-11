@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.catjam2.R;
 import com.example.catjam2.activities.PlaylistDetails;
 import com.example.catjam2.classes.Song;
@@ -89,10 +90,17 @@ public class SongDetails extends AppCompatActivity {
             else{
                 Glide.with(this).load(extras.getString(PlaylistsDetails.EXTRA_COVER_URL)).into(coverImage);
             }*/
+
+            if(extras.getString(PlaylistDetails.EXTRA_COVER_URL).isEmpty()){
+                coverImage.setImageResource(R.drawable.ic_baseline_music_note_24);
+            } else{
+                Glide.with(this).load(extras.getString(PlaylistDetails.EXTRA_COVER_URL)).into(coverImage);
+            }
+
             songUrl = extras.getString(PlaylistDetails.EXTRA_SONG_URL);
             songName.setText(extras.getString(PlaylistDetails.EXTRA_SONG_NAME));
             artistName.setText(extras.getString(PlaylistDetails.EXTRA_ARTIST_NAME));
-            coverImage.setImageResource(R.drawable.ic_baseline_music_note_24);
+            // coverImage.setImageResource(R.drawable.ic_baseline_music_note_24);
             playlistID = extras.getString(PlaylistDetails.EXTRA_PLAYLIST_ID);
         }
     }
@@ -163,7 +171,12 @@ public class SongDetails extends AppCompatActivity {
             songUrl = nextSong.getSongUrl();
             songName.setText(nextSong.getName());
             artistName.setText(nextSong.getArtist());
-            coverImage.setImageResource(R.drawable.ic_baseline_music_note_24);
+            if(nextSong.getCoverUrl().isEmpty()){
+                coverImage.setImageResource(R.drawable.ic_baseline_music_note_24);
+            } else{
+                Glide.with(this).load(nextSong.getCoverUrl()).into(coverImage);
+            }
+
         }
     }
 
@@ -193,7 +206,12 @@ public class SongDetails extends AppCompatActivity {
             songUrl = previousSong.getSongUrl();
             songName.setText(previousSong.getName());
             artistName.setText(previousSong.getArtist());
-            coverImage.setImageResource(R.drawable.ic_baseline_music_note_24);
+
+            if(previousSong.getCoverUrl().isEmpty()){
+                coverImage.setImageResource(R.drawable.ic_baseline_music_note_24);
+            } else{
+                Glide.with(this).load(previousSong.getCoverUrl()).into(coverImage);
+            }
         }
     }
 
