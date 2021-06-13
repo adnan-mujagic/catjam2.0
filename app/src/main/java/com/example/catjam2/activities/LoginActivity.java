@@ -4,8 +4,11 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -25,6 +28,7 @@ public class LoginActivity extends AppCompatActivity {
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference ref = database.getReference("users");
     ValueEventListener listener;
+    CheckBox rememberMeCheckbox;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +37,42 @@ public class LoginActivity extends AppCompatActivity {
 
         usernameField = findViewById(R.id.username);
         passwordField = findViewById(R.id.password);
+        rememberMeCheckbox = findViewById(R.id.remember_me_checkbox);
+
+        SharedPreferences preferences = getSharedPreferences("checkbox", MODE_PRIVATE);
+        String checkbox = preferences.getString("remember", "");
+        if(checkbox.equals("true")){
+            if(preferences.getString("username", "").isEmpty()){
+                Toast.makeText(this, "Couldn't retrieve username", Toast.LENGTH_SHORT).show();
+            } else {
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                intent.putExtra(USERNAME, preferences.getString("username", ""));
+                startActivity(intent);
+                finish();
+            }
+        } else if(checkbox.equals("false")){
+            Toast.makeText(this, "Please sign in or make a new account!", Toast.LENGTH_SHORT).show();
+        }
+
+        rememberMeCheckbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(buttonView.isChecked()){
+                    SharedPreferences preferences = getSharedPreferences("checkbox", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = preferences.edit();
+                    editor.putString("remember", "true");
+                    editor.putString("username", usernameField.getText().toString());
+                    editor.apply();
+                    Toast.makeText(LoginActivity.this, "Checked!", Toast.LENGTH_SHORT).show();
+                } else {
+                    SharedPreferences preferences = getSharedPreferences("checkbox", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = preferences.edit();
+                    editor.putString("remember", "false");
+                    editor.apply();
+                    Toast.makeText(LoginActivity.this, "Unchecked!", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
     public void login(View view) {
@@ -46,7 +86,7 @@ public class LoginActivity extends AppCompatActivity {
                 if(user==null){
                     Toast.makeText(LoginActivity.this, "User with that username doesn't exist!", Toast.LENGTH_SHORT).show();
                 }
-                else{
+                else {
                     if(user.getPassword().equals(inputPassword)){
                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                         intent.putExtra(USERNAME, user.getUsername());
@@ -58,8 +98,6 @@ public class LoginActivity extends AppCompatActivity {
                         Toast.makeText(LoginActivity.this, "Incorrect password!", Toast.LENGTH_SHORT).show();
                     }
                 }
-
-
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
@@ -69,7 +107,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         };
 
-        ref.addValueEventListener(listener);
+        ref.addListenerForSingleValueEvent(listener);
 
 
     }
@@ -82,6 +120,8 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        ref.removeEventListener(listener);
+        if(listener!=null){
+            ref.removeEventListener(listener);
+        }
     }
 }

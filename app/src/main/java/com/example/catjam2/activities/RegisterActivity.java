@@ -23,6 +23,7 @@ public class RegisterActivity extends AppCompatActivity {
     EditText repeatPassword;
     FirebaseDatabase db = FirebaseDatabase.getInstance();
     DatabaseReference ref = db.getReference("users");
+    public static final String USERNAME = "username";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +44,7 @@ public class RegisterActivity extends AppCompatActivity {
             User user = new User(inputUsername,inputPassword,inputEmail);
             ref.child(inputUsername).setValue(user);
             Intent intent = new Intent(this, MainActivity.class);
+            intent.putExtra(USERNAME, inputUsername);
             startActivity(intent);
             Toast.makeText(this, "You have successfully registered!", Toast.LENGTH_SHORT).show();
         }

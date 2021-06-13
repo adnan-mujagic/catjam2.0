@@ -6,6 +6,7 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -32,8 +33,15 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigationView.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener);
         viewPager = findViewById(R.id.fragment_container);
         setUpAdapter(viewPager);
-        if(getIntent().getExtras() != null){
-            username=getIntent().getExtras().getString(LoginActivity.USERNAME);
+
+        Bundle extras = getIntent().getExtras();
+        if(extras != null){
+            if(extras.getString(LoginActivity.USERNAME)!=null){
+                username=extras.getString(LoginActivity.USERNAME);
+            }
+            else if(extras.getString(RegisterActivity.USERNAME) != null) {
+                username = extras.getString(RegisterActivity.USERNAME);
+            }
         }
 
 
@@ -86,5 +94,15 @@ public class MainActivity extends AppCompatActivity {
     public void createPlaylist(View view){
         Intent intent = new Intent(getBaseContext(), CreatePlaylist.class);
         startActivity(intent);
+    }
+
+    public void logout(View view){
+        SharedPreferences preferences = getSharedPreferences("checkbox", MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("remember", "false");
+        editor.apply();
+        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+        startActivity(intent);
+        finish();
     }
 }
