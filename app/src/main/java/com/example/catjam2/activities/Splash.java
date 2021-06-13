@@ -19,14 +19,14 @@ public class Splash extends AppCompatActivity {
         setContentView(R.layout.activity_splash);
 
         img = findViewById(R.id.logo);
-        //img.setImageResource(R.drawable.ic_baseline_music_note_24);
-        //img.setColorFilter(Color.CYAN);
+        img.setImageResource(R.drawable.ic_baseline_music_note_24);
+        img.setColorFilter(Color.CYAN);
 
         Thread background = new Thread() {
             public void run() {
                 try {
                     // Thread will sleep for 5 seconds
-                    sleep(1*1000);
+                    sleep(2*1000);
 
                     // After 5 seconds redirect to another intent
                     Intent i=new Intent(getBaseContext(), LoginActivity.class);
