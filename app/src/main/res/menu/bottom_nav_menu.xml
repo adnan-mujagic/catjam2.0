@@ -10,7 +10,7 @@
         android:title="@string/playlists"/>
     <item
         android:id="@+id/nav_discover"
-        android:icon="@drawable/ic_baseline_search_24"
-        android:title="@string/discover"/>
+        android:icon="@drawable/ic_baseline_person_24"
+        android:title="@string/profile"/>
 
 </menu>
