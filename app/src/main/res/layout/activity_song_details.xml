@@ -40,9 +40,10 @@
 
     <Button
         android:id="@+id/play_button"
-        android:layout_width="wrap_content"
+        android:layout_width="110dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
+        android:background="@drawable/custom_button"
         android:onClick="playFile"
         android:text="Play"
         app:layout_constraintEnd_toEndOf="parent"
@@ -51,54 +52,54 @@
 
     <Button
         android:id="@+id/share_button"
-        android:layout_width="wrap_content"
+        android:layout_width="110dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
+        android:background="@drawable/custom_button"
         android:onClick="share"
         android:text="Share"
         app:layout_constraintEnd_toStartOf="@+id/play_button"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/song_details_song_artist" />
+        app:layout_constraintTop_toBottomOf="@+id/play_button" />
 
     <Button
         android:id="@+id/details_button"
-        android:layout_width="wrap_content"
+        android:layout_width="110dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="24dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
+        android:background="@drawable/custom_button"
         android:onClick="showDetailsOnGenius"
         android:text="Details"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/play_button"
+        app:layout_constraintTop_toBottomOf="@+id/play_button" />
+
+    <Button
+        android:id="@+id/skip_button"
+        android:layout_width="110dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/custom_button"
+        android:onClick="skipSong"
+        android:text="skip"
         app:layout_constraintStart_toEndOf="@+id/play_button"
         app:layout_constraintTop_toBottomOf="@+id/song_details_song_artist" />
 
     <Button
-        android:id="@+id/skip_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:onClick="skipSong"
-        android:text="skip"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/play_button" />
-
-    <Button
         android:id="@+id/play_previous_button"
-        android:layout_width="wrap_content"
+        android:layout_width="110dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@drawable/custom_button"
         android:onClick="playPreviousSong"
         android:text="previous"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/skip_button" />
+        app:layout_constraintEnd_toStartOf="@+id/play_button"
+        app:layout_constraintTop_toBottomOf="@+id/song_details_song_artist" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
