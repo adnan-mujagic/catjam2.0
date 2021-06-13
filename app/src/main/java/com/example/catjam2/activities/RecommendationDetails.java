@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -20,6 +21,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,6 +33,9 @@ public class RecommendationDetails extends AppCompatActivity {
     TextView recommendationName, recommendationArtist;
     String songURL;
     ImageView recommendationImage;
+
+    MediaPlayer mediaPlayer;
+    int currentPosition = 0;
 
     public static final String EXTRA_COVER = "EXTRA_COVER";
     public static final String EXTRA_SONG_NAME = "EXTRA_SONG_NAME";
@@ -49,6 +54,8 @@ public class RecommendationDetails extends AppCompatActivity {
         recommendationName = findViewById(R.id.recommendation_title_text);
         recommendationImage = findViewById(R.id.recommendation_image);
         recommendationImage.setImageResource(R.drawable.ic_baseline_music_note_24);
+        //SET UP THE MEDIA PLAYER
+        mediaPlayer = new MediaPlayer();
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference ref = database.getReference("recommendations");
 
@@ -77,6 +84,45 @@ public class RecommendationDetails extends AppCompatActivity {
                     Toast.makeText(RecommendationDetails.this, "Oops, something went wrong!", Toast.LENGTH_SHORT).show();
                 }
             });
+        }
+    }
+
+    public void playFile(View view){
+        try{
+            if(!mediaPlayer.isPlaying()){
+                if(playButton.getText().toString().equals("Resume")){
+                    mediaPlayer.seekTo(currentPosition);
+                    mediaPlayer.start();
+                    playButton.setText("Pause");
+                } else{
+                    mediaPlayer.setDataSource(songURL);
+                    mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                        @Override
+                        public void onPrepared(MediaPlayer mediaPlayer) {
+                            mediaPlayer.start();
+                            playButton.setText("Pause");
+                        }
+                    });
+                    mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                        @Override
+                        public void onCompletion(MediaPlayer mp) {
+                            mediaPlayer = new MediaPlayer();
+                            playButton.setText("Play");
+                            mediaPlayer.seekTo(0);
+                        }
+                    });
+                    mediaPlayer.prepareAsync();
+                }
+            } else{
+                if(playButton.getText().toString().equals("Pause")) {
+                    currentPosition = mediaPlayer.getCurrentPosition();
+                    mediaPlayer.pause();
+                    playButton.setText("Resume");
+                }
+            }
+
+        } catch(IOException e){
+            e.printStackTrace();
         }
     }
 

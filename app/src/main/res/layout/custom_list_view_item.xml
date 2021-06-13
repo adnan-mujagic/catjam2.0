@@ -28,6 +28,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
+        android:textColor="#E91E63"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/item_image"
@@ -41,6 +42,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginBottom="8dp"
         android:text="Textview"
+        android:textColor="#E91E63"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/item_image" />
 </androidx.constraintlayout.widget.ConstraintLayout>
