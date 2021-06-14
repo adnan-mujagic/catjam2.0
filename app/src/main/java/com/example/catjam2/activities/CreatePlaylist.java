@@ -39,7 +39,7 @@ public class CreatePlaylist extends AppCompatActivity {
             Toast.makeText(this, "Playlist "+pName+" successfully added!", Toast.LENGTH_SHORT).show();
         }
         else if(view.getId()==R.id.cancel_add_playlist){
-            Intent intent = new Intent(this,PlaylistsFragment.class);
+            Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
         }
     }
