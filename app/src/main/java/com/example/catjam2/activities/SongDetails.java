@@ -3,6 +3,7 @@ package com.example.catjam2.activities;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.net.Uri;
@@ -238,10 +239,17 @@ public class SongDetails extends AppCompatActivity {
         url+="lyrics";
 
         intent.setData(Uri.parse(url));
-
-        if(intent.resolveActivity(getPackageManager())!=null){
+        try {
             startActivity(intent);
+        } catch (ActivityNotFoundException e) {
+            Toast.makeText(this, "Nothing app can run this", Toast.LENGTH_SHORT).show();
         }
+        startActivity(intent);
+       /* if(intent.resolveActivity(getPackageManager())!=null){
+            startActivity(intent);
+        } else {
+            Toast.makeText(this, "Nothing to run this with", Toast.LENGTH_SHORT).show();
+        }*/
     }
 
     public void share(View view){
